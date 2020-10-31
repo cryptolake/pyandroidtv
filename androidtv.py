@@ -1,7 +1,7 @@
 from socket import *
 import shlex
 import readline
-from adb_shell.adb_device import AdbDeviceTcp, AdbDeviceUsb
+from adb_shell.adb_device import *
 def connectv():
     for i in range(0,250):
         so = socket(AF_INET, SOCK_DGRAM)
@@ -10,7 +10,7 @@ def connectv():
         sg = s.getsockname()[0]
         ra = sg.split(".")[3]
         target = "192.168."+ ra +"."+str(i)
-        s.settimeout(0.1)
+        s.settimeout(0.15)
         conn = s.connect_ex((target,5555))
         print('testing: ',target,end="\r")
         if (conn == 0 ):
